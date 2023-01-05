@@ -10,6 +10,24 @@ class EventApi extends Api {
 
         return events;
     }
+
+    static async post(data){
+        delete data._id;
+        let response = await fetch(this.url_api, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if(response.status !== 200){
+            throw new Error();
+        }
+
+        let event = await response.json();
+        return event;
+    }
 }
 
 export default EventApi;
