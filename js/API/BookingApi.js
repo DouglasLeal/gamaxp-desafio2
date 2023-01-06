@@ -21,6 +21,15 @@ class BookingApi extends Api {
         let event = await response.json();
         return event;
     }
+
+    static async getBookingsByEvent(idEvent){
+        const url = `${this.url_api}/event/${idEvent}`
+        let response = await fetch(url);
+
+        let bookings = await response.json();
+
+        return bookings;
+    }
 }
 
 export default BookingApi;

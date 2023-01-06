@@ -10,7 +10,6 @@ class LocationHelper{
             return;
         }
         
-        console.log("redirtect")
         let path = location.pathname.split("/");
         path = path.filter((el) => el);
         path = path[0].includes("html") ? "" : path[0];

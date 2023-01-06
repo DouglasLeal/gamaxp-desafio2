@@ -23,10 +23,24 @@ class LayoutHelper {
             <td>${event.name}</td>
             <td>${event.attractions}</td>
             <td>
-                <a data-id="${event._id}" data-bs-toggle="modal" data-bs-target="#modalBooking" type="button" class="btn btn-dark">ver reservas</a>
+            <a href="reservas.html?id=${event._id}" class="btn btn-dark">ver reservas</a>
                 <a href="editar-evento.html?id=${event._id}" class="btn btn-secondary">editar</a>
                 <a href="excluir-evento.html?id=${event._id}" class="btn btn-danger">excluir</a>
             </td>
+        </tr>`;
+
+        return tr;
+    }
+
+    static createTrBooking(booking, index){
+        let scheduled = new Date(booking.event.scheduled).toLocaleString();
+    
+        let tr = `
+        <tr>
+            <th scope="row">${index + 1}</th>
+            <td>${scheduled.substring(0, scheduled.length - 3)}</td>
+            <td>${booking.owner_name}</td>
+            <td>${booking.owner_email}</td>
         </tr>`;
 
         return tr;
