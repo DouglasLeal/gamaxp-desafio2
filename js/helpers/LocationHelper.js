@@ -7,7 +7,9 @@ class LocationHelper{
     static redirect(destination = null){
         if(destination == null){
             location.reload();
+            return;
         }
+        
         console.log("redirtect")
         let path = location.pathname.split("/");
         path = path.filter((el) => el);

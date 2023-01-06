@@ -9,7 +9,6 @@ let divNextEvents = document.querySelector(".next-events");
 let form = document.querySelector(".modal form");
 let elMessage = document.querySelector(".message-result");
 
-
 let idEventClicked = null;
 
 (async function listNextEvent(){
