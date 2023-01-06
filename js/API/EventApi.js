@@ -39,6 +39,26 @@ class EventApi extends Api {
         return event;
     }
 
+    static async put(id, data){
+        const url = `${this.url_api}/${id}`;
+        delete data._id;
+
+        let response = await fetch(url, {
+            method: 'put',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if(response.status !== 200){
+            throw new Error();
+        }
+
+        let event = await response.json();
+        return event;
+    }
+
     static async delete(id){
         const url = `${this.url_api}/${id}`;
         let response = await fetch(url, {
