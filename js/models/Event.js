@@ -1,6 +1,6 @@
 class Event{
     constructor({
-        _id = "null",
+        _id = null,
         name = null,
         attractions = null,
         description = null,
