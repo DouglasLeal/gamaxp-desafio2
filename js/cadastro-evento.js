@@ -1,5 +1,6 @@
 import EventAPI from "./API/EventApi.js";
 import Event from "./models/Event.js";
+import FlashMessageHelper from "./helpers/FlashMessageHelper.js";
 
 let form = document.querySelector("form");
 let elMessage = document.querySelector(".message-result");
@@ -17,24 +18,9 @@ form.onsubmit = async (event) => {
 
     try {
         await EventAPI.post(newEvent.getAll());
-        toggleMessage("Evento criado com sucesso.");
+        FlashMessageHelper.toggleMessage({element: elMessage, text: "Evento criado com sucesso.", type: "success"}); 
         form.reset();
-    } catch (error) {        
-        toggleMessage("Não foi possível criar o evento. Tente mais tarde.", false);
+    } catch (error) {
+        FlashMessageHelper.toggleMessage({element: elMessage, text: "Não foi possível criar o evento. Tente mais tarde."});        
     }
 }
-
-function toggleMessage(text, success = true){
-    elMessage.innerText = text;
-
-    elMessage.classList.remove("d-none");
-
-    if(success){
-        elMessage.classList.add("alert-success");
-        elMessage.classList.remove("alert-danger");
-    }else{
-        elMessage.classList.remove("alert-success");
-        elMessage.classList.add("alert-danger");
-    }
-}
-

@@ -11,6 +11,16 @@ class EventApi extends Api {
         return events;
     }
 
+    static async getById(id){
+        const url = `${this.url_api}/${id}`;
+
+        let response = await fetch(url);
+
+        let event = await response.json();
+
+        return event;
+    }
+
     static async post(data){
         delete data._id;
         let response = await fetch(this.url_api, {
@@ -21,12 +31,28 @@ class EventApi extends Api {
             }
         });
 
-        if(response.status !== 200){
+        if(response.status !== 201){
             throw new Error();
         }
 
         let event = await response.json();
         return event;
+    }
+
+    static async delete(id){
+        const url = `${this.url_api}/${id}`;
+        let response = await fetch(url, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if(response.status !== 204){
+            throw new Error();
+        }
+
+        return;
     }
 }
 
